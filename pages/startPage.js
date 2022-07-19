@@ -13,23 +13,23 @@ const StartPage = props => {
                 Al no tener datos Confirmados, se muestra Start Page
             </Text>
             <Card>
-            <TextInput
-                    style={styles.input}
-                    onChangeText={props.setNombre}
-                    value={props.nameValue}
-                    placeholder="Su Nombre"
-            />
-            <TextInput
-                    style={styles.input}
-                    onChangeText={props.setAge}
-                    value={props.ageValue}
-                    placeholder="Edad"
-                    keyboardType="numeric"
-            />
-            <Button
-            onPress={props.onHandlerButton}
-            title="Confirmar Datos"
-            />
+                <TextInput
+                        style={styles.input}
+                        onChangeText={props.setNombre}
+                        value={props.nameValue}
+                        placeholder="Su Nombre"
+                />
+                <TextInput
+                        style={styles.input}
+                        onChangeText={props.setAge}
+                        value={props.ageValue}
+                        placeholder="Edad"
+                        keyboardType="numeric"
+                />
+                <Button
+                onPress={props.onHandlerButton}
+                title="Confirmar Datos"
+                />
             </Card>
         </View>    
     )
@@ -53,9 +53,14 @@ const styles = StyleSheet.create({
         height: 40,
         borderBottomWidth: 1,
         borderBottomColor: colors.accent,
-        marginBottom: '6%'
-    }
+        marginBottom: '6%',
+        fontFamily: 'OpenSans',
+    },
 
+    button:{
+        fontFamily: 'OpenSans',
+        backgroundColor: colors.buttonPrimary
+    }
 
 })
 

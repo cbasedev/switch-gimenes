@@ -9,6 +9,8 @@ const MainPage = props => {
     return (
             <Card>
                 <Text style={styles.title}>Con Datos confirmados, se muestran los mismos:</Text>
+                <Text style={styles.title}>Nombre: {props.nameValue}</Text>
+                <Text style={styles.title}>Edad: {props.ageValue}</Text>                
             </Card>
     )
 

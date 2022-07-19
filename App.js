@@ -1,9 +1,12 @@
 import { StyleSheet, Text, View } from 'react-native';
 
+import AppLoading from 'expo-app-loading';
 import MainPage from './pages/mainPage';
 import StartPage from './pages/startPage';
 import colors from "./constants/colors";
 import react from 'react';
+import { render } from 'react-dom';
+import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 export default function App() {
@@ -11,13 +14,30 @@ export default function App() {
   const [nameValue, setNombre] = useState('');
   const [ageValue, setAge] = useState('');
   const [confirmed, setConfirmed] = useState(false);
+  
+  const [loaded] = useFonts({
+    OpenSans: require('./assets/fonts/OpenSans-Regular.ttf'),
+  });
+  
+  if (!loaded) {
+    return <AppLoading/>;    
+  }
+  
+  let content = <MainPage
+                  nameValue={nameValue}
+                  ageValue={ageValue}
+                />
 
   const onHandlerButton = () => {
-
     alert('Nombre: '+nameValue+' Edad: '+ageValue);
+    return 
+      <MainPage
+        nameValue={nameValue}
+        ageValue={ageValue}
+      />  
   }
 
-  let content = <MainPage/>
+ 
 
   if(!confirmed){
     content = <StartPage 
@@ -53,11 +73,12 @@ const styles = StyleSheet.create({
     backgroundColor: colors.back,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'black'
+    color: 'black',
+
   },
   title:{
     fontSize: 30,
-    color: colors.accent
-    
+    color: colors.accent,
+    fontFamily: 'OpenSans'
   }
 });
