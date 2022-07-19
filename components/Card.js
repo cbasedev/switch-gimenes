@@ -4,7 +4,7 @@ import react from "react";
 
 const Card = props => (
 
-    <View style={{ ...style.card, ...props.style}}>
+    <View style={{ ...styles.card, ...props.styles}}>
         { props.children }
     </View>  
 
@@ -13,7 +13,9 @@ const Card = props => (
 
 const styles = StyleSheet.create({
 
-   card:{
+    card:{
+        padding: '10%',
+        width: '90%',
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

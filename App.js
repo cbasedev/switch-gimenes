@@ -1,40 +1,42 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import AppLoading from 'expo-app-loading';
-import mainPage from './pages/mainPage';
+import MainPage from './pages/mainPage';
+import StartPage from './pages/startPage';
+import colors from "./constants/colors";
 import react from 'react';
-import startPage from './pages/startPage';
-import { useFonts } from 'expo-font';
 import { useState } from 'react';
 
 export default function App() {
   
-  //Declaración y carga Asíncrona de fuentes
-  
-  const [loaded] = useFonts({
-    Cabin: require('./assets/fonts/Cabin-Regular.ttf'),
-    CabinBold: require('./assets/fonts/Cabin-Bold.ttf'),
-    CabinItalic: require('./assets/fonts/Cabin-Italic.ttf'),
-  });
+  const [nameValue, setNombre] = useState('');
+  const [ageValue, setAge] = useState('');
+  const [confirmed, setConfirmed] = useState(false);
 
-  if(!loaded) return <AppLoading/>
+  const onHandlerButton = () => {
 
+    alert('Nombre: '+nameValue+' Edad: '+ageValue);
+  }
 
-  const [nameValue, setNombre] = useState('')
-  const [ageValue, setAge] = useState('')
-  const [confirmed, setConfirmed] = useState(false)
-
-  let content = <mainPage/>
+  let content = <MainPage/>
 
   if(!confirmed){
-    content = <startPage/>
+    content = <StartPage 
+                nameValue={nameValue}
+                ageValue={ageValue}
+                confirmed={confirmed}
+                setNombre={setNombre}
+                setAge={setAge}
+                setConfirmed={setConfirmed}
+                onHandlerButton={onHandlerButton}
+              />
   }
 
   return (
     
     <View style={styles.container}>
-
-        {content}
+      <Text style={styles.title}>Vista Principal</Text>
+      
+      { content }
 
     </View>
 
@@ -47,8 +49,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    paddingTop: '20%',
+    backgroundColor: colors.back,
     alignItems: 'center',
     justifyContent: 'center',
+    color: 'black'
   },
+  title:{
+    fontSize: 30,
+    color: colors.accent
+    
+  }
 });
